@@ -3,730 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Clean - Limpieza Profesional de Embarcaciones</title>
+    <title>Master Clean Yatch - Limpieza Profesional de Embarcaciones</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --navy: #0a2342;
-            --deep-blue: #1d3557;
-            --ocean-blue: #457b9d;
-            --aqua: #a8dadc;
-            --bright-cyan: #00d4ff;
-            --white: #ffffff;
-            --light-gray: #f8fbfd;
-            --silver: #e8f3f7;
-            --dark-text: #1a1a2e;
-            --gradient-ocean: linear-gradient(135deg, #0a2342 0%, #1d3557 50%, #457b9d 100%);
-            --gradient-fresh: linear-gradient(135deg, #a8dadc 0%, #00d4ff 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            color: var(--dark-text);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: var(--white);
-        }
-
-        /* HEADER */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(10, 35, 66, 0.08);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            box-shadow: 0 4px 30px rgba(10, 35, 66, 0.15);
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: var(--gradient-ocean);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--navy);
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-fresh);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 28px;
-            height: 3px;
-            background: var(--navy);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            height: 100vh;
-            min-height: 650px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: var(--gradient-ocean);
-            margin-top: 0;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
-            opacity: 0.4;
-        }
-
-        .hero-waves {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            overflow: hidden;
-        }
-
-        .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" fill="rgba(168, 218, 220, 0.3)"/></svg>') repeat-x;
-            background-size: 50% 100%;
-            animation: wave 25s linear infinite;
-        }
-
-        .wave:nth-child(2) {
-            bottom: 10px;
-            opacity: 0.5;
-            animation: wave 20s linear reverse infinite;
-        }
-
-        @keyframes wave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 900px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            color: var(--white);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: var(--aqua);
-            margin-bottom: 3rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: var(--bright-cyan);
-            color: var(--navy);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
-            background: #00e5ff;
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            color: var(--navy);
-            text-align: center;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--ocean-blue);
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
-            font-weight: 300;
-        }
-
-        /* SERVICES */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-            margin-top: 3rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .service-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 40px rgba(10, 35, 66, 0.08);
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-fresh);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(10, 35, 66, 0.15);
-            border-color: var(--aqua);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            color: var(--navy);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .service-card p {
-            color: var(--deep-blue);
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        /* ABOUT */
-        #nosotros {
-            background: var(--light-gray);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-            height: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(10, 35, 66, 0.2);
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-ocean);
-            opacity: 0.7;
-            z-index: 1;
-        }
-
-        .about-text {
-            padding: 2rem 0;
-        }
-
-        .about-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--navy);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .about-text p {
-            color: var(--deep-blue);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .highlight {
-            color: var(--ocean-blue);
-            font-weight: 600;
-        }
-
-        /* QUOTE FORM */
-        #presupuesto {
-            background: var(--gradient-ocean);
-            padding: 6rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #presupuesto::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(168, 218, 220, 0.1);
-            border-radius: 50%;
-            filter: blur(80px);
-        }
-
-        .form-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 30px;
-            padding: 3rem;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
-        }
-
-        .form-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .form-subtitle {
-            text-align: center;
-            color: var(--ocean-blue);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--navy);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 2px solid var(--silver);
-            border-radius: 12px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: var(--white);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--bright-cyan);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .checkbox-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .checkbox-item label {
-            margin: 0;
-            cursor: pointer;
-            font-weight: 400;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 1.3rem;
-            background: var(--gradient-ocean);
-            color: var(--white);
-            border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 1rem;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(10, 35, 66, 0.3);
-        }
-
-        .form-message {
-            display: none;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-            text-align: center;
-            font-weight: 600;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .form-message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 2px solid #c3e6cb;
-        }
-
-        /* CONTACT */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: var(--light-gray);
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .contact-card:hover {
-            background: var(--white);
-            border-color: var(--aqua);
-            box-shadow: 0 15px 40px rgba(10, 35, 66, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .contact-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .contact-card h3 {
-            color: var(--navy);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .contact-card p {
-            color: var(--ocean-blue);
-            font-size: 1.1rem;
-        }
-
-        .contact-card a {
-            color: var(--ocean-blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-card a:hover {
-            color: var(--bright-cyan);
-        }
-
-        .whatsapp-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem 2rem;
-            background: #25D366;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-top: 2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
-            background: #22c55e;
-        }
-
-        /* FOOTER */
-        footer {
-            background: var(--navy);
-            color: var(--aqua);
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        footer p {
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        .footer-highlight {
-            color: var(--bright-cyan);
-            font-weight: 600;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 968px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 70%;
-                max-width: 350px;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                justify-content: center;
-                padding: 2rem;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-                transition: right 0.4s ease;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(8px, 8px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .about-image {
-                height: 350px;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .form-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- HEADER -->
     <header id="header">
         <nav>
-            <div class="logo">Master Clean</div>
+            <div class="logo">Master Clean Yatch</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
@@ -749,8 +36,8 @@
             <div class="wave"></div>
         </div>
         <div class="hero-content">
-            <h1>Master Clean</h1>
-            <p class="hero-subtitle">Limpieza profesional de embarcaciones<br>Cuidamos tu barco como si fuera nuestro</p>
+            <h1>Master Clean Yatch</h1>
+            <p class="hero-subtitle">Limpieza y mantenimiento profesional de embarcaciones<br>Cuidamos tu barco como si fuera nuestro</p>
             <a href="#presupuesto" class="cta-button">Solicitar Presupuesto</a>
         </div>
     </section>
@@ -811,12 +98,12 @@
             </div>
             
             <div class="about-text">
-                <h3>Raúl Jiménez - Fundador de Master Clean</h3>
-                <p>Con más de <span class="highlight">15 años de experiencia</span> en el sector náutico, fundé Master Clean con una misión clara: ofrecer un servicio de limpieza y mantenimiento de embarcaciones que supere todas las expectativas.</p>
-                
+                <h3>Raúl Jiménez - Fundador de Master Clean Yatch</h3>
+                <p>Con más de <span class="highlight">15 años de experiencia</span> en el sector náutico, fundé Master Clean Yatch con una misión clara: ofrecer un servicio de limpieza y mantenimiento de embarcaciones que supere todas las expectativas.</p>
+
                 <p>Mi pasión por el mar y mi compromiso con la excelencia me han llevado a especializarme en el cuidado profesional de todo tipo de embarcaciones, desde motos de agua hasta yates de lujo.</p>
-                
-                <p>En Master Clean, no solo limpiamos barcos, <span class="highlight">cuidamos inversiones</span> y creamos relaciones de confianza con nuestros clientes. Cada embarcación es tratada con el mismo cariño y profesionalidad que si fuera nuestra.</p>
+
+                <p>En Master Clean Yatch, no solo limpiamos barcos, <span class="highlight">cuidamos inversiones</span> y creamos relaciones de confianza con nuestros clientes. Cada embarcación es tratada con el mismo cariño y profesionalidad que si fuera nuestra.</p>
                 
                 <p><span class="highlight">Tu satisfacción es nuestra prioridad.</span> Trabajamos con productos de primera calidad, técnicas avanzadas y un equipo altamente cualificado para garantizar resultados impecables.</p>
             </div>
@@ -873,6 +160,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="manga">Manga (metros) *</label>
+                        <input type="number" id="manga" name="manga" placeholder="Ej: 4" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="anio">Año de Fabricación</label>
                         <input type="number" id="anio" name="anio" placeholder="Ej: 2020" min="1950" max="2025">
                     </div>
@@ -894,29 +186,29 @@
                     <div class="form-group full-width">
                         <label>Servicios Deseados *</label>
                         <div class="checkbox-group">
-                            <div class="checkbox-item">
+                            <div class="checkbox-item" data-tooltip="Lavado y limpieza del casco, cubierta y superficies externas">
                                 <input type="checkbox" id="limpieza-exterior" name="servicios" value="limpieza-exterior">
                                 <label for="limpieza-exterior">Limpieza Exterior</label>
                             </div>
-                            <div class="checkbox-item">
+                            <div class="checkbox-item" data-tooltip="Limpieza profunda de cabina, camarotes y espacios interiores">
                                 <input type="checkbox" id="limpieza-interior" name="servicios" value="limpieza-interior">
                                 <label for="limpieza-interior">Limpieza Interior</label>
                             </div>
-                            <div class="checkbox-item">
+                            <div class="checkbox-item" data-tooltip="Pulido profesional para restaurar el brillo del casco">
                                 <input type="checkbox" id="pulido" name="servicios" value="pulido">
                                 <label for="pulido">Pulido de Casco</label>
                             </div>
-                            <div class="checkbox-item">
+                            <div class="checkbox-item" data-tooltip="Limpieza especializada de tapizados, cojines y moquetas">
                                 <input type="checkbox" id="tapiceria" name="servicios" value="tapiceria">
                                 <label for="tapiceria">Tapicería</label>
                             </div>
-                            <div class="checkbox-item">
+                            <div class="checkbox-item" data-tooltip="Desengrase y limpieza de compartimentos de motor">
                                 <input type="checkbox" id="motor" name="servicios" value="motor">
                                 <label for="motor">Limpieza Motor</label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="detallado" name="servicios" value="detallado">
-                                <label for="detallado">Detallado Completo</label>
+                            <div class="checkbox-item" data-tooltip="Servicio completo: interior, exterior, pulido y protección total">
+                                <input type="checkbox" id="servicio-completo" name="servicios" value="servicio-completo">
+                                <label for="servicio-completo">Servicio al Completo</label>
                             </div>
                         </div>
                     </div>
@@ -950,7 +242,7 @@
             <div class="contact-card">
                 <span class="contact-icon">✉️</span>
                 <h3>Email</h3>
-                <p><a href="mailto:info@masterclean.es">info@masterclean.es</a></p>
+                <p><a href="mailto:info@mastercleanyatch.es">info@mastercleanyatch.es</a></p>
             </div>
 
             <div class="contact-card">
@@ -970,94 +262,11 @@
 
     <!-- FOOTER -->
     <footer>
-        <p><span class="footer-highlight">Master Clean</span> - Limpieza Profesional de Embarcaciones</p>
-        <p>© 2025 Master Clean. Todos los derechos reservados.</p>
+        <p><span class="footer-highlight">Master Clean Yatch</span> - Limpieza Profesional de Embarcaciones</p>
+        <p>© 2025 Master Clean Yatch. Todos los derechos reservados.</p>
         <p>Fundado por <span class="footer-highlight">Raúl Jiménez</span></p>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Form submission
-        const quoteForm = document.getElementById('quoteForm');
-        const formMessage = document.getElementById('formMessage');
-
-        quoteForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Recoger datos del formulario
-            const formData = new FormData(quoteForm);
-            const servicios = [];
-            formData.getAll('servicios').forEach(servicio => {
-                servicios.push(servicio);
-            });
-
-            // Aquí puedes integrar con un servicio de email o backend
-            // Por ahora mostramos mensaje de éxito
-            
-            formMessage.textContent = '✅ ¡Formulario enviado con éxito! Nos pondremos en contacto contigo en menos de 24 horas.';
-            formMessage.className = 'form-message success';
-            formMessage.style.display = 'block';
-
-            // Limpiar formulario
-            quoteForm.reset();
-
-            // Ocultar mensaje después de 8 segundos
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 8000);
-
-            // Scroll suave al mensaje
-            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        });
-
-        // Animaciones al hacer scroll (opcional)
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Aplicar animación a las tarjetas
-        document.querySelectorAll('.service-card, .contact-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
