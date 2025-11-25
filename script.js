@@ -93,7 +93,7 @@ quoteForm.addEventListener('submit', (e) => {
 
     // Codificar mensaje para URL
     const mensajeCodificado = encodeURIComponent(mensaje);
-    const numeroWhatsApp = '34667089499';
+    const numeroWhatsApp = '34646551404';
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
     // Abrir WhatsApp
