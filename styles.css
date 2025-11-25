@@ -749,6 +749,18 @@ footer p {
 
 /* RESPONSIVE */
 @media (max-width: 968px) {
+    .logo-container {
+        gap: 1rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .header-contact {
+        font-size: 0.8rem;
+    }
+
     .nav-links {
         position: fixed;
         top: 0;
@@ -799,6 +811,20 @@ footer p {
 }
 
 @media (max-width: 640px) {
+    .logo-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .header-contact {
+        font-size: 0.75rem;
+    }
+
     section {
         padding: 4rem 1.5rem;
     }
