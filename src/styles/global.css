@@ -397,29 +397,27 @@ section {
 
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 3rem;
+    align-items: start;
 }
 
 .about-image {
     position: relative;
-    height: 500px;
+    height: 600px;
     border-radius: 20px;
     overflow: hidden;
+    background-color: #457b9d ;
+    border: 6px solid #457b9d;
     box-shadow: 0 10px 30px rgba(10, 35, 66, 0.15), 0 0 20px rgba(0, 212, 255, 0.2);
-    border: none;
-    background: linear-gradient(135deg, #00d4ff 0%, #457b9d 25%, #1d3557 50%, #457b9d 75%, #00d4ff 100%);
-    background-size: 200% 200%;
-    padding: 6px;
     transition: all 0.4s ease;
     cursor: pointer;
 }
 
 .about-image:hover {
-    box-shadow: 0 15px 40px rgba(10, 35, 66, 0.25), 0 0 30px rgba(0, 212, 255, 0.4);
-    transform: translateY(-5px);
-    animation: gradientShift 3s ease infinite;
+    border-color: #00d4ff;
+    box-shadow: 0 15px 40px rgba(10, 35, 66, 0.25), 0 0 30px rgba(0, 212, 255, 0.4), 0 0 0 3px rgba(0, 212, 255, 0.3);
+    transform: translateY(-5px) rotate(1.5deg);
 }
 
 @keyframes gradientShift {
@@ -478,7 +476,6 @@ section {
     object-position: center;
     border-radius: 16px;
     display: block;
-    background: white;
     position: relative;
     transition: transform 0.4s ease;
 }
@@ -492,7 +489,6 @@ section {
 }
 
 .about-text h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     color: var(--navy);
     margin-bottom: 1.5rem;
@@ -509,6 +505,15 @@ section {
 .highlight {
     color: var(--ocean-blue);
     font-weight: 600;
+    display: inline-block;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.highlight:hover {
+    color: #0059ff;
+    text-shadow: 0 0 15px rgba(0, 132, 255, 0.5), 0 0 25px rgba(0, 212, 255, 0.3);
+    transform: translateY(-0.5px) rotate(0.5deg);
 }
 
 /* QUOTE FORM */
