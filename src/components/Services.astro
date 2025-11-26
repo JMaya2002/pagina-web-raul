@@ -1,0 +1,49 @@
+---
+const services = [
+    {
+        icon: '🌊',
+        title: 'Limpieza Exterior',
+        description: 'Limpieza y baldeo para la cubierta y bañera de tu embarcación, asegurando que cada rincón brille como el primer día.'
+    },
+    {
+        icon: '🧼',
+        title: 'Limpieza Interior',
+        description: 'Dejaremos los espacios interiores habitables limpios y relucientes como el primer día.'
+    },
+    {
+        icon: '✨',
+        title: 'Pulido de Casco',
+        description: 'Restauramos el brillo original del casco con técnicas profesionales de pulido y encerado.'
+    },
+    {
+        icon: '🛋️',
+        title: 'Limpieza de Tapicería',
+        description: 'Tratamiento especializado de tapizados, cojines y moquetas náuticas con productos profesionales que respetan los tejidos.'
+    },
+    {
+        icon: '🔧',
+        title: 'Sentinas',
+        description: 'Limpieza y mantenimiento de compartimentos de motor y espacios técnicos como las sentinas para un rendimiento óptimo y un ambiente higiénico y seco.'
+    },
+    {
+        icon: '🗓️',
+        title: 'Mantenimiento y Limpieza Regular',
+        description: 'Suscripción personalizada de mantenimiento preventivo. Tu embarcación siempre lista para zarpar sin preocupaciones.'
+    }
+];
+---
+
+<section id="servicios">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-subtitle">Soluciones completas para el mantenimiento de tu embarcación</p>
+
+    <div class="services-grid">
+        {services.map(service => (
+            <div class="service-card">
+                <span class="service-icon">{service.icon}</span>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+            </div>
+        ))}
+    </div>
+</section>
