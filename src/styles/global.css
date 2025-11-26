@@ -410,7 +410,25 @@ section {
     box-shadow: 0 10px 30px rgba(10, 35, 66, 0.15), 0 0 20px rgba(0, 212, 255, 0.2);
     border: none;
     background: linear-gradient(135deg, #00d4ff 0%, #457b9d 25%, #1d3557 50%, #457b9d 75%, #00d4ff 100%);
+    background-size: 200% 200%;
     padding: 6px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.about-image:hover {
+    box-shadow: 0 15px 40px rgba(10, 35, 66, 0.25), 0 0 30px rgba(0, 212, 255, 0.4);
+    transform: translateY(-5px);
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .about-image::before {
@@ -423,6 +441,34 @@ section {
     background: var(--gradient-ocean);
     opacity: 0.1;
     z-index: 1;
+    transition: opacity 0.4s ease;
+}
+
+.about-image:hover::before {
+    opacity: 0.15;
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.about-image:hover::after {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
 }
 
 .about-image img {
@@ -434,6 +480,11 @@ section {
     display: block;
     background: white;
     position: relative;
+    transition: transform 0.4s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
 }
 
 .about-text {
