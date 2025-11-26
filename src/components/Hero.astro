@@ -1,0 +1,61 @@
+---
+---
+
+<section class="hero" id="inicio">
+    <div class="hero-waves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
+    <div class="hero-content">
+        <h1>Master Clean Yatch</h1>
+        <p class="hero-subtitle">Limpieza y mantenimiento profesional de embarcaciones<br>Cuidamos tu barco como si fuera nuestro</p>
+        <a href="#presupuesto" class="cta-button">Solicitar Presupuesto</a>
+    </div>
+</section>
+
+<script>
+    // Hero fade-out on scroll
+    const heroSection = document.querySelector('.hero');
+    let ticking = false;
+
+    function updateHeroOpacity() {
+        const scrollPosition = window.scrollY;
+        const heroHeight = heroSection?.offsetHeight || 0;
+
+        const fadeStart = 200;
+        const fadeEnd = heroHeight * 0.8;
+
+        if (!heroSection) return;
+
+        if (scrollPosition <= fadeStart) {
+            heroSection.style.opacity = '1';
+            heroSection.style.transform = 'translateY(0)';
+        } else if (scrollPosition >= fadeEnd) {
+            heroSection.style.opacity = '0';
+            heroSection.style.transform = 'translateY(-100px)';
+            heroSection.style.pointerEvents = 'none';
+        } else {
+            const fadeProgress = (scrollPosition - fadeStart) / (fadeEnd - fadeStart);
+            const opacity = 1 - fadeProgress;
+            const translateY = -(fadeProgress * 100);
+
+            heroSection.style.opacity = opacity.toString();
+            heroSection.style.transform = `translateY(${translateY}px)`;
+            heroSection.style.pointerEvents = opacity > 0.5 ? 'auto' : 'none';
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateHeroOpacity();
+            });
+            ticking = true;
+        }
+    });
+
+    updateHeroOpacity();
+</script>

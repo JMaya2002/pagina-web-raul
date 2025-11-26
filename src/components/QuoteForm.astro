@@ -1,0 +1,553 @@
+---
+---
+
+<section id="presupuesto">
+    <div class="form-container">
+        <h2 class="form-title">Solicita tu Presupuesto</h2>
+        <p class="form-subtitle">Completa el formulario y te contactaremos en menos de 24 horas</p>
+
+        <form id="quoteForm">
+            <div class="form-grid">
+                <!-- Datos de Contacto -->
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono *</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ubicacion">Ubicación del Barco *</label>
+                    <input type="text" id="ubicacion" name="ubicacion" placeholder="Puerto, ciudad" required>
+                </div>
+
+                <!-- Datos de la Embarcación -->
+                <div class="form-group">
+                    <label for="tipoEmbarcacion">Tipo de Embarcación *</label>
+                    <select id="tipoEmbarcacion" name="tipoEmbarcacion" required>
+                        <option value="">Selecciona...</option>
+                        <option value="yate">Yate</option>
+                        <option value="velero">Velero</option>
+                        <option value="lancha">Lancha</option>
+                        <option value="moto-agua">Moto de Agua</option>
+                        <option value="catamarán">Catamarán</option>
+                        <option value="barco-pesca">Barco de Pesca</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="eslora">Eslora (metros) *</label>
+                    <input type="number" id="eslora" name="eslora" placeholder="Ej: 12" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="manga">Manga (metros) *</label>
+                    <input type="number" id="manga" name="manga" placeholder="Ej: 4" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="anio">Año de Fabricación</label>
+                    <input type="number" id="anio" name="anio" placeholder="Ej: 2020" min="1950" max="2025">
+                </div>
+
+                <div class="form-group">
+                    <label for="materialCasco">Material del Casco</label>
+                    <div class="custom-select-wrapper">
+                        <div class="custom-select" id="customMaterialSelect">
+                            <div class="custom-select-trigger">
+                                <span class="custom-select-text">Selecciona...</span>
+                                <div class="custom-select-arrow">
+                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="custom-select-options">
+                                <div class="custom-option" data-value="fibra" data-icon="/img/materials/fibra.png">
+                                    <div class="option-icon">
+                                        <img src="/img/materials/fibra.png" alt="Fibra de Vidrio" />
+                                    </div>
+                                    <span class="option-text">Fibra de Vidrio</span>
+                                </div>
+                                <div class="custom-option" data-value="aluminio" data-icon="/img/materials/aluminio.png">
+                                    <div class="option-icon">
+                                        <img src="/img/materials/aluminio.png" alt="Aluminio" />
+                                    </div>
+                                    <span class="option-text">Aluminio</span>
+                                </div>
+                                <div class="custom-option" data-value="madera" data-icon="/img/materials/madera.png">
+                                    <div class="option-icon">
+                                        <img src="/img/materials/madera.png" alt="Madera" />
+                                    </div>
+                                    <span class="option-text">Madera</span>
+                                </div>
+                                <div class="custom-option" data-value="acero" data-icon="/img/materials/acero.png">
+                                    <div class="option-icon">
+                                        <img src="/img/materials/acero.png" alt="Acero" />
+                                    </div>
+                                    <span class="option-text">Acero</span>
+                                </div>
+                                <div class="custom-option" data-value="poliester" data-icon="/img/materials/poliester.png">
+                                    <div class="option-icon">
+                                        <img src="/img/materials/poliester.png" alt="Poliéster" />
+                                    </div>
+                                    <span class="option-text">Poliéster</span>
+                                </div>
+                                <div class="custom-option" data-value="otro" data-icon="/img/materials/otro.png">
+                                    <div class="option-icon">
+                                        <img src="/img/materials/otro.png" alt="Otro" />
+                                    </div>
+                                    <span class="option-text">Otro</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="materialCasco" name="materialCasco" value="">
+                    </div>
+                </div>
+
+                <!-- Servicios Deseados -->
+                <div class="form-group full-width">
+                    <fieldset>
+                        <legend>Servicios Deseados *</legend>
+                        <div class="checkbox-group">
+                        <div class="checkbox-item" data-tooltip="Lavado y limpieza del casco, cubierta y superficies externas">
+                            <input type="checkbox" id="limpieza-exterior" name="servicios" value="limpieza-exterior">
+                            <label for="limpieza-exterior">Limpieza Exterior</label>
+                        </div>
+                        <div class="checkbox-item" data-tooltip="Limpieza profunda de cabina, camarotes y espacios interiores">
+                            <input type="checkbox" id="limpieza-interior" name="servicios" value="limpieza-interior">
+                            <label for="limpieza-interior">Limpieza Interior</label>
+                        </div>
+                        <div class="checkbox-item" data-tooltip="Pulido profesional para restaurar el brillo del casco">
+                            <input type="checkbox" id="pulido" name="servicios" value="pulido">
+                            <label for="pulido">Pulido de Casco</label>
+                        </div>
+                        <div class="checkbox-item" data-tooltip="Limpieza especializada de tapizados, cojines y moquetas">
+                            <input type="checkbox" id="tapiceria" name="servicios" value="tapiceria">
+                            <label for="tapiceria">Tapicería</label>
+                        </div>
+                        <div class="checkbox-item" data-tooltip="Desengrase y limpieza de compartimentos de motor">
+                            <input type="checkbox" id="motor" name="servicios" value="motor">
+                            <label for="motor">Limpieza Motor</label>
+                        </div>
+                        <div class="checkbox-item" data-tooltip="Servicio completo: interior, exterior, pulido y protección total">
+                            <input type="checkbox" id="servicio-completo" name="servicios" value="servicio-completo">
+                            <label for="servicio-completo">Servicio al Completo</label>
+                        </div>
+                    </div>
+                    </fieldset>
+                </div>
+
+                <!-- Descripción -->
+                <div class="form-group full-width">
+                    <label for="descripcion">Descripción o Necesidades Especiales</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Cuéntanos más sobre lo que necesitas..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button">Enviar Solicitud</button>
+
+            <div id="formMessage" class="form-message"></div>
+        </form>
+    </div>
+</section>
+
+<script>
+    // Form submission
+    const quoteForm = document.getElementById('quoteForm') as HTMLFormElement;
+    const formMessage = document.getElementById('formMessage') as HTMLElement;
+
+    quoteForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(quoteForm);
+
+        const nombre = formData.get('nombre');
+        const email = formData.get('email');
+        const telefono = formData.get('telefono');
+        const ubicacion = formData.get('ubicacion');
+        const tipoEmbarcacion = formData.get('tipoEmbarcacion');
+        const eslora = parseFloat(formData.get('eslora') as string);
+        const manga = parseFloat(formData.get('manga') as string);
+        const anio = formData.get('anio');
+        const materialCasco = formData.get('materialCasco');
+        const descripcion = formData.get('descripcion');
+
+        const m2 = (eslora * manga * 2).toFixed(2);
+
+        const servicios: string[] = [];
+        formData.getAll('servicios').forEach(servicio => {
+            const servicioNombres: Record<string, string> = {
+                'limpieza-exterior': 'Limpieza Exterior',
+                'limpieza-interior': 'Limpieza Interior',
+                'pulido': 'Pulido de Casco',
+                'tapiceria': 'Tapicería',
+                'motor': 'Limpieza Motor',
+                'servicio-completo': 'Servicio al Completo'
+            };
+            servicios.push(servicioNombres[servicio as string] || servicio as string);
+        });
+
+        let mensaje = `*Solicitud de Presupuesto - Master Clean Yatch*\n\n`;
+        mensaje += `*DATOS DE CONTACTO*\n`;
+        mensaje += `Nombre: ${nombre}\n`;
+        mensaje += `Email: ${email}\n`;
+        mensaje += `Teléfono: ${telefono}\n`;
+        mensaje += `Ubicación: ${ubicacion}\n\n`;
+
+        mensaje += `*DATOS DE LA EMBARCACIÓN*\n`;
+        mensaje += `Tipo: ${tipoEmbarcacion}\n`;
+        mensaje += `Eslora: ${eslora} metros\n`;
+        mensaje += `Manga: ${manga} metros\n`;
+        mensaje += `📐 *Superficie total: ${m2} m²*\n`;
+        if (anio) mensaje += `Año: ${anio}\n`;
+        if (materialCasco) mensaje += `Material del casco: ${materialCasco}\n`;
+
+        if (servicios.length > 0) {
+            mensaje += `\n*SERVICIOS SOLICITADOS*\n`;
+            servicios.forEach(servicio => {
+                mensaje += `✓ ${servicio}\n`;
+            });
+        }
+
+        if (descripcion) {
+            mensaje += `\n*DETALLES ADICIONALES*\n${descripcion}`;
+        }
+
+        const mensajeCodificado = encodeURIComponent(mensaje);
+        const numeroWhatsApp = '34646551404';
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+
+        window.open(urlWhatsApp, '_blank');
+
+        formMessage.textContent = '✅ Redirigiendo a WhatsApp...';
+        formMessage.className = 'form-message success';
+        formMessage.style.display = 'block';
+
+        setTimeout(() => {
+            quoteForm.reset();
+            formMessage.style.display = 'none';
+        }, 2000);
+    });
+
+    // Lógica para "Servicio al Completo"
+    const servicioCompletoCheckbox = document.getElementById('servicio-completo') as HTMLInputElement;
+    const otrosServiciosCheckboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]:not(#servicio-completo)') as NodeListOf<HTMLInputElement>;
+
+    servicioCompletoCheckbox?.addEventListener('change', function() {
+        if (this.checked) {
+            otrosServiciosCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.disabled = true;
+                checkbox.parentElement?.classList.add('disabled');
+            });
+        } else {
+            otrosServiciosCheckboxes.forEach(checkbox => {
+                checkbox.disabled = false;
+                checkbox.parentElement?.classList.remove('disabled');
+            });
+        }
+    });
+
+    otrosServiciosCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked && servicioCompletoCheckbox?.checked) {
+                servicioCompletoCheckbox.checked = false;
+            }
+        });
+    });
+
+    // Custom Select para Material del Casco
+    const customSelect = document.getElementById('customMaterialSelect');
+    const selectTrigger = customSelect?.querySelector('.custom-select-trigger');
+    const options = customSelect?.querySelectorAll('.custom-option');
+    const hiddenInput = document.getElementById('materialCasco') as HTMLInputElement;
+    const selectText = customSelect?.querySelector('.custom-select-text');
+
+    selectTrigger?.addEventListener('click', () => {
+        customSelect?.classList.toggle('open');
+    });
+
+    options?.forEach(option => {
+        option.addEventListener('click', () => {
+            const value = option.getAttribute('data-value');
+            const text = option.querySelector('.option-text')?.textContent;
+            const iconSrc = option.getAttribute('data-icon');
+
+            if (hiddenInput && selectText && value && text && iconSrc) {
+                hiddenInput.value = value;
+                selectText.innerHTML = `<div class="selected-icon"><img src="${iconSrc}" alt="${text}" /></div> ${text}`;
+                customSelect?.classList.remove('open');
+                customSelect?.classList.add('has-value');
+            }
+        });
+    });
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (customSelect && !customSelect.contains(e.target as Node)) {
+            customSelect.classList.remove('open');
+        }
+    });
+</script>
+
+<style>
+    fieldset {
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    legend {
+        padding: 0;
+    }
+
+    /* Animaciones de hover para todos los campos */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    textarea {
+        transition: all 0.3s ease;
+    }
+
+    input[type="text"]:hover,
+    input[type="email"]:hover,
+    input[type="tel"]:hover,
+    input[type="number"]:hover,
+    textarea:hover {
+        border-color: #457b9d !important;
+        background-color: #f8fbfd;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(10, 35, 66, 0.08);
+    }
+
+    /* Estilos mejorados para los select */
+    select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%230a2342' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 14px;
+        padding-right: 3rem !important;
+        cursor: pointer;
+        font-weight: 500;
+        color: #1a1a2e;
+        transition: all 0.3s ease;
+    }
+
+    select:hover {
+        border-color: #457b9d !important;
+        background-color: #f8fbfd;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(10, 35, 66, 0.08);
+    }
+
+    select:focus {
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2300d4ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        transform: translateY(0);
+    }
+
+    /* Mejorar las opciones del select */
+    select option {
+        padding: 0.75rem;
+        background: white;
+        color: #1a1a2e;
+        font-weight: 400;
+    }
+
+    select option:hover {
+        background: #f8fbfd;
+    }
+
+    /* Estilo para cuando está vacío */
+    select:invalid {
+        color: #a0a0a0;
+    }
+
+    select option:first-child {
+        color: #a0a0a0;
+    }
+
+    /* Custom Select Styles */
+    .custom-select-wrapper {
+        position: relative;
+    }
+
+    .custom-select {
+        position: relative;
+        width: 100%;
+        user-select: none;
+    }
+
+    .custom-select-trigger {
+        width: 100%;
+        padding: 1rem 1.2rem;
+        border: 2px solid #e8f3f7;
+        border-radius: 12px;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #a0a0a0;
+    }
+
+    .custom-select-trigger:hover {
+        border-color: #457b9d;
+        background-color: #f8fbfd;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(10, 35, 66, 0.08);
+    }
+
+    .custom-select.has-value .custom-select-trigger {
+        color: #1a1a2e;
+    }
+
+    .custom-select.open .custom-select-trigger {
+        border-color: #00d4ff;
+        box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    }
+
+    .custom-select-text {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .selected-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        background: linear-gradient(135deg, #a8dadc 0%, #00d4ff 50%);
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .selected-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .custom-select-arrow {
+        display: flex;
+        align-items: center;
+        color: #0a2342;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .custom-select.open .custom-select-arrow {
+        transform: rotate(180deg);
+        color: #00d4ff;
+    }
+
+    .custom-select-options {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        background: white;
+        border: 2px solid #e8f3f7;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(10, 35, 66, 0.15);
+        z-index: 100;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .custom-select.open .custom-select-options {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .custom-option {
+        padding: 1rem 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+    }
+
+    .custom-option:hover {
+        background: linear-gradient(90deg, #f8fbfd 0%, #e8f3f7 100%);
+        border-left-color: #00d4ff;
+        padding-left: 1.5rem;
+    }
+
+    .option-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: linear-gradient(135deg, #a8dadc 0%, #00d4ff 50%);
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+        overflow: hidden;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 212, 255, 0.2);
+    }
+
+    .option-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .custom-option:hover .option-icon {
+        transform: scale(1.2) rotate(10deg);
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4);
+    }
+
+    .option-text {
+        color: #1a1a2e;
+        font-weight: 500;
+        flex: 1;
+    }
+
+    .custom-option:not(:last-child) {
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* Scrollbar personalizado para opciones */
+    .custom-select-options::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .custom-select-options::-webkit-scrollbar-track {
+        background: #f8fbfd;
+    }
+
+    .custom-select-options::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #457b9d 0%, #00d4ff 100%);
+        border-radius: 10px;
+    }
+
+    .custom-select-options::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #00d4ff 0%, #457b9d 100%);
+    }
+</style>

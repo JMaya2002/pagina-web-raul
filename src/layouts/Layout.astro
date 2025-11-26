@@ -1,0 +1,55 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Master Clean Yatch - Limpieza y mantenimiento profesional de embarcaciones. Cuidamos tu barco como si fuera nuestro." />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	@import '../styles/global.css';
+</style>
+
+<script>
+	// Animaciones al hacer scroll
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -100px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const target = entry.target as HTMLElement;
+				target.style.opacity = '1';
+				target.style.transform = 'translateY(0)';
+			}
+		});
+	}, observerOptions);
+
+	// Aplicar animación a las tarjetas
+	document.querySelectorAll('.service-card, .contact-card').forEach(card => {
+		const htmlCard = card as HTMLElement;
+		htmlCard.style.opacity = '0';
+		htmlCard.style.transform = 'translateY(30px)';
+		htmlCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+		observer.observe(card);
+	});
+</script>
