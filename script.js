@@ -25,6 +25,57 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// ========================================
+// Hero fade-out on scroll
+// (Para revertir: comentar desde aquí hasta la línea que dice "FIN Hero fade-out")
+// ========================================
+const heroSection = document.querySelector('.hero');
+let ticking = false;
+
+function updateHeroOpacity() {
+    const scrollPosition = window.scrollY;
+    const heroHeight = heroSection.offsetHeight;
+
+    // Calcular opacidad: empieza a desvanecerse después de 200px de scroll
+    // Se desvanece completamente después de scrollear 80% del hero
+    const fadeStart = 200;
+    const fadeEnd = heroHeight * 0.8;
+
+    if (scrollPosition <= fadeStart) {
+        heroSection.style.opacity = '1';
+        heroSection.style.transform = 'translateY(0)';
+    } else if (scrollPosition >= fadeEnd) {
+        heroSection.style.opacity = '0';
+        heroSection.style.transform = 'translateY(-100px)';
+        heroSection.style.pointerEvents = 'none';
+    } else {
+        // Interpolación suave entre fadeStart y fadeEnd
+        const fadeProgress = (scrollPosition - fadeStart) / (fadeEnd - fadeStart);
+        const opacity = 1 - fadeProgress;
+        const translateY = -(fadeProgress * 100); // Se mueve hacia arriba hasta -100px
+
+        heroSection.style.opacity = opacity.toString();
+        heroSection.style.transform = `translateY(${translateY}px)`;
+        heroSection.style.pointerEvents = opacity > 0.5 ? 'auto' : 'none';
+    }
+
+    ticking = false;
+}
+
+// Optimizar con requestAnimationFrame
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            updateHeroOpacity();
+        });
+        ticking = true;
+    }
+});
+
+// Inicializar al cargar
+updateHeroOpacity();
+// ======================================== FIN Hero fade-out
+
 // Form submission
 const quoteForm = document.getElementById('quoteForm');
 const formMessage = document.getElementById('formMessage');
