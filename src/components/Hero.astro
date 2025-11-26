@@ -16,21 +16,22 @@
 
 <script>
     // Hero fade-out on scroll
-    const heroSection = document.querySelector('.hero');
+    const heroSection = document.querySelector('.hero') as HTMLElement | null;
     let ticking = false;
 
     function updateHeroOpacity() {
+        if (!heroSection) return;
+
         const scrollPosition = window.scrollY;
-        const heroHeight = heroSection?.offsetHeight || 0;
+        const heroHeight = heroSection.offsetHeight || 0;
 
         const fadeStart = 200;
         const fadeEnd = heroHeight * 0.8;
 
-        if (!heroSection) return;
-
         if (scrollPosition <= fadeStart) {
             heroSection.style.opacity = '1';
             heroSection.style.transform = 'translateY(0)';
+            heroSection.style.pointerEvents = 'auto';
         } else if (scrollPosition >= fadeEnd) {
             heroSection.style.opacity = '0';
             heroSection.style.transform = 'translateY(-100px)';
