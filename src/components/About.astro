@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import raulImage from '../../public/img/image.png';
 ---
 
 <section id="nosotros">
@@ -7,7 +9,7 @@
 
     <div class="about-content">
         <div class="about-image">
-            <img src="/img/image.png" alt="Raúl Jiménez - Fundador de Master Clean Yatch" width="800" height="800" />
+            <Image src={raulImage} alt="Raúl Jiménez - Fundador de Master Clean Yatch" width={800} height={800} />
         </div>
 
         <div class="about-text">
