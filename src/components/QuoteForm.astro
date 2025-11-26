@@ -1,4 +1,5 @@
 ---
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <section id="presupuesto">
@@ -72,39 +73,39 @@
                                 </div>
                             </div>
                             <div class="custom-select-options">
-                                <div class="custom-option" data-value="fibra" data-icon="/img/materials/fibra.png">
+                                <div class="custom-option" data-value="fibra" data-icon={`${baseUrl}img/materials/fibra.png`}>
                                     <div class="option-icon">
-                                        <img src="/img/materials/fibra.png" alt="Fibra de Vidrio" />
+                                        <img src={`${baseUrl}img/materials/fibra.png`} alt="Fibra de Vidrio" />
                                     </div>
                                     <span class="option-text">Fibra de Vidrio</span>
                                 </div>
-                                <div class="custom-option" data-value="aluminio" data-icon="/img/materials/aluminio.png">
+                                <div class="custom-option" data-value="aluminio" data-icon={`${baseUrl}img/materials/aluminio.png`}>
                                     <div class="option-icon">
-                                        <img src="public/img/materials/aluminio.png" alt="Aluminio" />
+                                        <img src={`${baseUrl}img/materials/aluminio.png`} alt="Aluminio" />
                                     </div>
                                     <span class="option-text">Aluminio</span>
                                 </div>
-                                <div class="custom-option" data-value="madera" data-icon="/img/materials/madera.png">
+                                <div class="custom-option" data-value="madera" data-icon={`${baseUrl}img/materials/madera.png`}>
                                     <div class="option-icon">
-                                        <img src="public/img/materials/madera.png" alt="Madera" />
+                                        <img src={`${baseUrl}img/materials/madera.png`} alt="Madera" />
                                     </div>
                                     <span class="option-text">Madera</span>
                                 </div>
-                                <div class="custom-option" data-value="acero" data-icon="/img/materials/acero.png">
+                                <div class="custom-option" data-value="acero" data-icon={`${baseUrl}img/materials/acero.png`}>
                                     <div class="option-icon">
-                                        <img src="public/img/materials/acero.png" alt="Acero" />
+                                        <img src={`${baseUrl}img/materials/acero.png`} alt="Acero" />
                                     </div>
                                     <span class="option-text">Acero</span>
                                 </div>
-                                <div class="custom-option" data-value="poliester" data-icon="/img/materials/poliester.png">
+                                <div class="custom-option" data-value="poliester" data-icon={`${baseUrl}img/materials/poliester.png`}>
                                     <div class="option-icon">
-                                        <img src="public/img/materials/poliester.png" alt="Poliéster" />
+                                        <img src={`${baseUrl}img/materials/poliester.png`} alt="Poliéster" />
                                     </div>
                                     <span class="option-text">Poliéster</span>
                                 </div>
-                                <div class="custom-option" data-value="otro" data-icon="/img/materials/otro.png">
+                                <div class="custom-option" data-value="otro" data-icon={`${baseUrl}img/materials/otro.png`}>
                                     <div class="option-icon">
-                                        <img src="public/img/materials/otro.png" alt="Otro" />
+                                        <img src={`${baseUrl}img/materials/otro.png`} alt="Otro" />
                                     </div>
                                     <span class="option-text">Otro</span>
                                 </div>
