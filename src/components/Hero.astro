@@ -17,7 +17,35 @@
 <script>
     // Hero fade-out on scroll
     const heroSection = document.querySelector('.hero') as HTMLElement | null;
+    const heroTitle = document.querySelector('.hero h1') as HTMLElement | null;
+    const heroWaves = document.querySelectorAll('.hero .wave') as NodeListOf<HTMLElement>;
     let ticking = false;
+
+    // Optimización de rendimiento: pausar animaciones cuando el hero no es visible
+    const observerOptions = {
+        threshold: 0,
+        rootMargin: '100px'
+    };
+
+    const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const isVisible = entry.isIntersecting;
+
+            // Pausar/reanudar animación del título
+            if (heroTitle) {
+                heroTitle.style.animationPlayState = isVisible ? 'running' : 'paused';
+            }
+
+            // Pausar/reanudar animaciones de las olas
+            heroWaves.forEach(wave => {
+                wave.style.animationPlayState = isVisible ? 'running' : 'paused';
+            });
+        });
+    }, observerOptions);
+
+    if (heroSection) {
+        heroObserver.observe(heroSection);
+    }
 
     function updateHeroOpacity() {
         if (!heroSection) return;
@@ -56,7 +84,7 @@
             });
             ticking = true;
         }
-    });
+    }, { passive: true });
 
     updateHeroOpacity();
 </script>

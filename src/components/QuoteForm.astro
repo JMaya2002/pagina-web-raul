@@ -113,7 +113,7 @@ import otroImg from '../../public/img/materials/otro.png';
                                     <div class="option-icon">
                                         <Image src={otroImg} alt="Otro" width={100} height={100} />
                                     </div>
-                                    <span class="option-text">Otro</span>
+                                    <span class="option-text">Otro (Indícamelo abajo, por favor.)</span>
                                 </div>
                             </div>
                         </div>
@@ -288,11 +288,20 @@ import otroImg from '../../public/img/materials/otro.png';
         option.addEventListener('click', () => {
             const value = option.getAttribute('data-value');
             const text = option.querySelector('.option-text')?.textContent;
-            const iconSrc = option.getAttribute('data-icon');
+            const originalIcon = option.querySelector('.option-icon');
 
-            if (hiddenInput && selectText && value && text && iconSrc) {
+            if (hiddenInput && selectText && value && text && originalIcon) {
                 hiddenInput.value = value;
-                selectText.innerHTML = `<div class="selected-icon"><img src="${iconSrc}" alt="${text}" /></div> ${text}`;
+
+                // Clonar el icono existente (que usa el componente Image de Astro)
+                const clonedIcon = originalIcon.cloneNode(true) as HTMLElement;
+                clonedIcon.className = 'selected-icon';
+
+                // Limpiar y reconstruir el contenido
+                selectText.innerHTML = '';
+                selectText.appendChild(clonedIcon);
+                selectText.appendChild(document.createTextNode(' ' + text));
+
                 customSelect?.classList.remove('open');
                 customSelect?.classList.add('has-value');
             }
@@ -436,20 +445,35 @@ import otroImg from '../../public/img/materials/otro.png';
     }
 
     .selected-icon {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
-        width: 2rem;
-        height: 2rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        max-width: 2.5rem;
+        max-height: 2.5rem;
         background: linear-gradient(135deg, #a8dadc 0%, #00d4ff 50%);
         border-radius: 50%;
+        transition: transform 0.3s ease;
         overflow: hidden;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 212, 255, 0.2);
     }
 
     .selected-icon img {
-        width: 150%;
-        height: 150%;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
         object-fit: cover;
+        display: block;
+    }
+
+    .custom-select-trigger:hover .selected-icon {
+        transform: scale(1.2) rotate(10deg);
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4);
     }
 
     .custom-select-arrow {
@@ -511,6 +535,10 @@ import otroImg from '../../public/img/materials/otro.png';
         justify-content: center;
         width: 2.5rem;
         height: 2.5rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        max-width: 2.5rem;
+        max-height: 2.5rem;
         background: linear-gradient(135deg, #a8dadc 0%, #00d4ff 50%);
         border-radius: 50%;
         transition: transform 0.3s ease;
@@ -519,10 +547,13 @@ import otroImg from '../../public/img/materials/otro.png';
         box-shadow: 0 2px 8px rgba(0, 212, 255, 0.2);
     }
 
-    .option-icon img {
-        width: 150%;
-        height: 150%;
+    .option-icon :global(img) {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
         object-fit: cover;
+        display: block;
     }
 
     .custom-option:hover .option-icon {

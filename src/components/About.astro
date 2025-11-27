@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import raulImage from '../../public/img/image.png';
+import raulImage from '../../public/img/raul1.jpeg';
+import raulImage2 from '../../public/img/raul2.jpeg';
 ---
 
 <section id="nosotros">
@@ -8,8 +9,34 @@ import raulImage from '../../public/img/image.png';
     <p class="section-subtitle">Pasión y experiencia al servicio para tu embarcación</p>
 
     <div class="about-content">
-        <div class="about-image">
-            <Image src={raulImage} alt="Raúl Jiménez - Fundador de Master Clean Yatch" width={800} height={800} />
+        <div class="about-image-carousel">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide active">
+                        <Image src={raulImage} alt="Raúl Jiménez - Fundador de Master Clean Yatch" width={800} height={800} />
+                    </div>
+                    <div class="carousel-slide">
+                        <Image src={raulImage2} alt="Raúl Jiménez - Profesional náutico" width={800} height={800} />
+                    </div>
+                </div>
+
+                <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Imagen anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+
+                <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Siguiente imagen">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <button class="indicator active" data-slide="0" aria-label="Ir a imagen 1"></button>
+                    <button class="indicator" data-slide="1" aria-label="Ir a imagen 2"></button>
+                </div>
+            </div>
         </div>
 
         <div class="about-text">
@@ -24,3 +51,294 @@ import raulImage from '../../public/img/image.png';
         </div>
     </div>
 </section>
+
+<script>
+    const carouselTrack = document.getElementById('carouselTrack');
+    const slides = carouselTrack?.querySelectorAll('.carousel-slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.querySelectorAll('.indicator');
+
+    let currentSlide = 0;
+    const totalSlides = slides?.length || 0;
+
+    function goToSlide(index: number) {
+        if (!slides || !carouselTrack) return;
+
+        if (index < 0) {
+            currentSlide = totalSlides - 1;
+        } else if (index >= totalSlides) {
+            currentSlide = 0;
+        } else {
+            currentSlide = index;
+        }
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === currentSlide);
+        });
+
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === currentSlide);
+        });
+    }
+
+    prevBtn?.addEventListener('click', () => {
+        goToSlide(currentSlide - 1);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+        goToSlide(currentSlide + 1);
+    });
+
+    indicators.forEach((indicator) => {
+        indicator.addEventListener('click', () => {
+            const slideIndex = parseInt(indicator.getAttribute('data-slide') || '0');
+            goToSlide(slideIndex);
+        });
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carouselTrack?.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    carouselTrack?.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                goToSlide(currentSlide + 1);
+            } else {
+                goToSlide(currentSlide - 1);
+            }
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            goToSlide(currentSlide - 1);
+        } else if (e.key === 'ArrowRight') {
+            goToSlide(currentSlide + 1);
+        }
+    });
+</script>
+
+<style>
+    .about-image-carousel {
+        position: relative;
+        width: 100%;
+        height: 700px;
+        margin: 0 auto;
+    }
+
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 20px;
+        background-color: #457b9d;
+        border: 6px solid #457b9d;
+        box-shadow: 0 10px 30px rgba(10, 35, 66, 0.15), 0 0 20px rgba(0, 212, 255, 0.2);
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+
+    .carousel-container:hover {
+        border-color: #00d4ff;
+        box-shadow: 0 15px 40px rgba(10, 35, 66, 0.25), 0 0 30px rgba(0, 212, 255, 0.4), 0 0 0 3px rgba(0, 212, 255, 0.3);
+        transform: translateY(-5px) rotate(1.5deg);
+    }
+
+    .carousel-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #a8dadc 0%, #457b9d 40%, #1d3557 100%);
+        opacity: 0.1;
+        z-index: 1;
+        transition: opacity 0.4s ease;
+    }
+
+    .carousel-container:hover::before {
+        opacity: 0.15;
+    }
+
+    .carousel-container::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            45deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.3) 50%,
+            transparent 70%
+        );
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        transition: transform 0.6s ease;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .carousel-container:hover::after {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+
+    .carousel-track {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+    }
+
+    .carousel-slide.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .carousel-slide :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 16px;
+        display: block;
+        position: relative;
+        transition: transform 0.4s ease;
+    }
+
+    .carousel-container:hover .carousel-slide.active :global(img) {
+        transform: scale(1.05);
+    }
+
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 100;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(10, 35, 66, 0.15);
+        color: #0a2342;
+    }
+
+    .carousel-btn:hover {
+        background: white;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 6px 20px rgba(10, 35, 66, 0.25);
+        color: #00d4ff;
+    }
+
+    .carousel-btn:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+
+    .carousel-btn-prev {
+        left: 16px;
+    }
+
+    .carousel-btn-next {
+        right: 16px;
+    }
+
+    .carousel-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 100;
+    }
+
+    .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid white;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .indicator:hover {
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(1.2);
+    }
+
+    .indicator.active {
+        background: linear-gradient(135deg, #00d4ff 0%, #457b9d 100%);
+        border-color: white;
+        transform: scale(1.3);
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .about-image-carousel {
+            height: 500px;
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+        }
+
+        .carousel-btn-prev {
+            left: 8px;
+        }
+
+        .carousel-btn-next {
+            right: 8px;
+        }
+
+        .carousel-indicators {
+            bottom: 12px;
+            gap: 8px;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .about-image-carousel {
+            height: 400px;
+        }
+    }
+</style>
